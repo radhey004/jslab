@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Countdown Timer</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #timer {
+            margin-top: 25px;
+            font-size: 22px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Countdown Timer</h2>
+
+    <!-- Calendar and time selector -->
+    <input type="datetime-local" id="date">
+
+    <br><br>
+
+    <button onclick="startCountdown()">
+        Start Countdown
+    </button>
+
+    <div id="timer"></div>
+
+</div>
+
+
+<script>
+
+let timer;
+
+
+// Start countdown
+function startCountdown() {
+
+    // Clear previous timer
+    clearInterval(timer);
+
+
+    // Get selected date and time
+    let end = new Date(
+        document.getElementById("date").value
+    ).getTime();
+
+
+    // Run every second
+    timer = setInterval(function() {
+
+        // Current time
+        let now = new Date().getTime();
+
+
+        // Remaining time
+        let remaining = end - now;
+
+
+        // If countdown is finished
+        if(remaining <= 0) {
+
+            clearInterval(timer);
+
+            document.getElementById("timer").innerHTML =
+                "Countdown Expired";
+
+            return;
+        }
+
+
+        // Calculate days
+        let days = Math.floor(
+            remaining / (1000 * 60 * 60 * 24)
+        );
+
+
+        // Calculate hours
+        let hours = Math.floor(
+            remaining / (1000 * 60 * 60) % 24
+        );
+
+
+        // Calculate minutes
+        let minutes = Math.floor(
+            remaining / (1000 * 60) % 60
+        );
+
+
+        // Calculate seconds
+        let seconds = Math.floor(
+            remaining / 1000 % 60
+        );
+
+
+        // Display countdown
+        document.getElementById("timer").innerHTML =
+
+            days + " Days " +
+            hours + " Hours " +
+            minutes + " Minutes " +
+            seconds + " Seconds";
+
+    }, 1000);
+}
+
+</script>
+
+</body>
+</html>

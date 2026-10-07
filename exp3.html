@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>String Operations</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+            text-align: center;
+        }
+
+        .box {
+            background: white;
+            width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .section {
+            border: 1px solid #aaa;
+            margin: 20px 0;
+            padding: 15px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            background: black;
+            color: white;
+            border: none;
+        }
+
+        p {
+            font-size: 17px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>String Operations</h2>
+
+    <div class="section">
+
+        <h2>Using Standard Methods</h2>
+
+        <!-- Reverse -->
+        <h3>Reverse String</h3>
+        <input id="rev1" placeholder="Enter string">
+        <button onclick="stdRev()">Reverse</button>
+        <p id="out1"></p>
+
+        <!-- Replace -->
+        <h3>Replace Character</h3>
+        <input id="str1" placeholder="Enter string">
+        <input id="old1" maxlength="1" placeholder="Old">
+        <input id="new1" maxlength="1" placeholder="New">
+        <button onclick="stdRep()">Replace</button>
+        <p id="out2"></p>
+
+        <!-- Palindrome -->
+        <h3>Palindrome</h3>
+        <input id="pal1" placeholder="Enter string">
+        <button onclick="stdPal()">Check</button>
+        <p id="out3"></p>
+
+    </div>
+
+    <div class="section">
+
+        <h2>Without Standard Methods</h2>
+
+        <!-- Reverse -->
+        <h3>Reverse String</h3>
+        <input id="rev2" placeholder="Enter string">
+        <button onclick="manRev()">Reverse</button>
+        <p id="out4"></p>
+
+        <!-- Replace -->
+        <h3>Replace Character</h3>
+        <input id="str2" placeholder="Enter string">
+        <input id="old2" maxlength="1" placeholder="Old">
+        <input id="new2" maxlength="1" placeholder="New">
+        <button onclick="manRep()">Replace</button>
+        <p id="out5"></p>
+
+        <!-- Palindrome -->
+        <h3>Palindrome</h3>
+        <input id="pal2" placeholder="Enter string">
+        <button onclick="manPal()">Check</button>
+        <p id="out6"></p>
+
+    </div>
+
+</div>
+
+<script>
+
+// Standard reverse
+function stdRev() {
+    let s = document.getElementById("rev1").value;
+    let result = s.split("").reverse().join("");
+
+    document.getElementById("out1").innerHTML =
+        "Reverse = " + result;
+}
+
+// Standard replace
+function stdRep() {
+    let s = document.getElementById("str1").value;
+    let old = document.getElementById("old1").value;
+    let n = document.getElementById("new1").value;
+    let result = s.split(old).join(n);
+
+    document.getElementById("out2").innerHTML =
+        "Replace = " + result;
+}
+
+// Standard palindrome
+function stdPal() {
+    let s = document.getElementById("pal1").value;
+    let r = s.split("").reverse().join("");
+
+    if (s === r)
+        document.getElementById("out3").innerHTML = "Palindrome";
+    else
+        document.getElementById("out3").innerHTML = "Not Palindrome";
+}
+
+// Manual reverse
+function manRev() {
+    let s = document.getElementById("rev2").value;
+    let result = "";
+
+    for (let i = s.length - 1; i >= 0; i--)
+        result = result + s[i];
+
+    document.getElementById("out4").innerHTML =
+        "Reverse = " + result;
+}
+
+// Manual replace
+function manRep() {
+    let s = document.getElementById("str2").value;
+    let old = document.getElementById("old2").value;
+    let n = document.getElementById("new2").value;
+    let result = "";
+
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] === old)
+            result = result + n;
+        else
+            result = result + s[i];
+    }
+
+    document.getElementById("out5").innerHTML =
+        "Replace = " + result;
+}
+
+// Manual palindrome
+function manPal() {
+    let s = document.getElementById("pal2").value;
+    let flag = true;
+
+    for (let i = 0, j = s.length - 1; i < j; i++, j--) {
+        if (s[i] !== s[j]) {
+            flag = false;
+            break;
+        }
+    }
+
+    if (flag)
+        document.getElementById("out6").innerHTML = "Palindrome";
+    else
+        document.getElementById("out6").innerHTML = "Not Palindrome";
+}
+
+</script>
+
+</body>
+</html>

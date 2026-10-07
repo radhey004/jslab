@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: white;
+            text-align: center;
+            font-size:x-large;
+            margin-top: 100px;
+        }
+        h3{
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- <input placeholder="This is mouse over event" type="text" > -->
+    <label for="" class="ip1" onmouseover="myfun()" onmouseleave="mouseleave()">Change Home page background color.</label>
+    <!-- <button> </button> -->
+     <br>
+     <br>
+     <br>
+     <input placeholder="Click here for focus event" id="ip2" type="text" onfocus="focusevent()" onblur="blurevent()">
+</body>
+
+<script>
+    function myfun(){
+        document.body.style.backgroundColor = 'red';
+    }
+    function focusevent(){
+        document.getElementById("ip2").style.backgroundColor = 'green';
+        document.body.style.background = 'blue';
+    }
+    function blurevent(){
+        document.getElementById("ip2").style.backgroundColor = 'white';
+        document.body.style.background = 'green';
+    }
+    function mouseleave(){
+        document.body.style.background = 'white';
+    }
+</script>
+</html>

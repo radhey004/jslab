@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Information Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f2f2;
+        }
+
+        .box {
+            width: 500px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input, textarea, select {
+            width: 95%;
+            padding: 8px;
+            margin: 6px 0 12px;
+        }
+
+        button {
+            padding: 10px 25px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+        }
+
+        #welcome {
+            text-align: center;
+            font-size: 22px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box" id="formBox">
+
+    <h2>Student Information Form</h2>
+
+    <!-- Name -->
+    <label>Name</label>
+    <input type="text" id="name">
+
+    <!-- Address -->
+    <label>Address</label>
+    <textarea id="address"></textarea>
+
+    <!-- City -->
+    <label>City</label>
+    <input type="text" id="city">
+
+    <!-- State -->
+    <label>State</label>
+    <input type="text" id="state">
+
+    <!-- Gender -->
+    <label>Gender</label>
+    <select id="gender">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+
+    <!-- Mobile -->
+    <label>Mobile Number</label>
+    <input type="text" id="mobile">
+
+    <!-- Email -->
+    <label>Email</label>
+    <input type="text" id="email">
+
+    <br>
+
+    <button onclick="validateForm()">Submit</button>
+
+    <p id="message"></p>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

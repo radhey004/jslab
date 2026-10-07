@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Array Objects</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            width: 550px;
+            margin: 40px auto;
+            padding: 25px;
+        }
+
+        input, button {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        input {
+            width: 80%;
+        }
+
+        button {
+            background: black;
+            color: white;
+            border: none;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Array Object Operations</h2>
+
+    <input id="size" type="number" placeholder="Array size">
+
+    <button onclick="createArray()">Create Array</button>
+
+    <br>
+
+    <div id="inputFields"></div>
+
+    <button onclick="addInput()">Add More</button>
+
+    <button onclick="appendObject()">Push Object</button>
+
+    <br>
+
+    <button onclick="popElement()">Pop</button>
+    <button onclick="shiftElement()">Shift</button>
+    <button onclick="unshiftElement()">Unshift</button>
+    <button onclick="checkArray()">isArray</button>
+
+    <p id="result"></p>
+
+</div>
+
+<script>
+
+let array = [];
+let appendedObject;
+
+// Create array
+function createArray() {
+
+    let size = parseInt(document.getElementById("size").value);
+
+    if (isNaN(size) || size <= 0) {
+        document.getElementById("result").innerHTML =
+            "Invalid array size";
+        return;
+    }
+
+    array = [];
+
+    for (let i = 0; i < size; i++) {
+        array.push(i + 1);
+    }
+
+    show();
+}
+
+// Add input field
+function addInput() {
+
+    let input = document.createElement("input");
+
+    input.type = "text";
+
+    input.placeholder =
+        "Enter value e.g. 5, hello, [10,20,30]";
+
+    input.className = "objectInput";
+
+    document.getElementById("inputFields").appendChild(input);
+}
+
+// Push object/value
+function appendObject() {
+
+    let inputs =
+        document.querySelectorAll(".objectInput");
+
+    if (inputs.length === 0) {
+        document.getElementById("result").innerHTML =
+            "Please click Add More first";
+        return;
+    }
+
+    let input = inputs[inputs.length - 1];
+
+    if (input.value.trim() === "") {
+        document.getElementById("result").innerHTML =
+            "Please enter a value";
+        return;
+    }
+
+    let value = input.value.trim();
+
+    // Check for array
+    if (value.startsWith("[") && value.endsWith("]")) {
+
+        try {
+            appendedObject = JSON.parse(value);
+        }
+        catch {
+            document.getElementById("result").innerHTML =
+                "Invalid array";
+            return;
+        }
+    }
+
+    // Check for number
+    else if (!isNaN(value)) {
+
+        appendedObject = Number(value);
+    }
+
+    // Store text
+    else {
+
+        appendedObject = value;
+    }
+
+    array.push(appendedObject);
+
+    show();
+}
+
+// Pop
+function popElement() {
+
+    array.pop();
+
+    show();
+}
+
+// Shift
+function shiftElement() {
+
+    array.shift();
+
+    show();
+}
+
+// Unshift
+function unshiftElement() {
+
+    array.unshift(0);
+
+    show();
+}
+
+// Check appended object
+function checkArray() {
+
+    if (Array.isArray(appendedObject)) {
+
+        document.getElementById("result").innerHTML =
+            "Appended object is an Array";
+    }
+    else {
+
+        document.getElementById("result").innerHTML =
+            "Appended object is not an Array";
+    }
+}
+
+// Display array
+function show() {
+
+    document.getElementById("result").innerHTML =
+        "Array = " + JSON.stringify(array);
+}
+
+</script>
+
+</body>
+</html>

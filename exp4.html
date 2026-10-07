@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>String Comparison</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            width: 450px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 8px;
+        }
+
+        button {
+            padding: 8px 20px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #output {
+            margin-top: 20px;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>String Comparison</h2>
+
+    <input id="str1" placeholder="Enter first string">
+    <input id="str2" placeholder="Enter second string">
+
+    <br>
+
+    <button onclick="compare()">Compare</button>
+
+    <div id="output"></div>
+
+</div>
+
+<script>
+
+function compare() {
+
+    let string1 = document.getElementById("str1").value;
+    let string2 = document.getElementById("str2").value;
+
+    // Strict equality
+    let strict = string1 === string2;
+
+    // Loose equality
+    let loose = string1 == string2;
+
+    // Length comparison
+    let length = string1.length === string2.length;
+
+    // Alphabetical comparison
+	let result = string1.localeCompare(string2);
+	let alphabetical;
+	if (result === 0)
+    	    alphabetical = "Both words are same alphabetically";
+	else if (result < 0)
+    	    alphabetical = string1 + " comes before " + string2 + " alphabetically";
+	else
+    	    alphabetical = string2 + " comes before " + string1 + " alphabetically";
+
+    	document.getElementById("output").innerHTML =
+        "Strict Equality: " + strict + "<br>" +
+        "Loose Equality: " + loose + "<br>" +
+        "Same Length: " + length + "<br>" +
+        "Alphabetical Comparison: " + alphabetical;
+}
+
+</script>
+
+</body>
+</html>

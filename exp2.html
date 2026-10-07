@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Multiplication Table</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            width: 450px;
+            margin: 50px auto;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #output {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>Multiplication Table</h2>
+
+    <!-- Enter number -->
+    <input type="number" id="num" placeholder="Enter number">
+
+    <button onclick="table()">Generate Table</button>
+
+    <!-- Output -->
+    <p id="output"></p>
+
+</div>
+
+
+<script>
+
+function table() {
+
+    // Get number from input
+    let n = parseInt(document.getElementById("num").value);
+
+    // Check whether input is a valid number
+    if(isNaN(n)) {
+
+        document.getElementById("output").innerHTML =
+            "Please enter a valid number";
+
+        return;
+    }
+
+
+    let result = "";
+
+
+    // -----------------------------
+    // Using FOR loop
+    // -----------------------------
+
+    result += "<b>Using FOR Loop:</b><br>";
+
+    for(let i = 1; i <= 10; i++) {
+
+        result += n + " x " + i + " = " + (n * i) + "<br>";
+    }
+
+
+    // -----------------------------
+    // Using WHILE loop
+    // -----------------------------
+
+    result += "<br><b>Using WHILE Loop:</b><br>";
+
+    let i = 1;
+
+    while(i <= 10) {
+
+        result += n + " x " + i + " = " + (n * i) + "<br>";
+
+        i++;
+    }
+
+
+    // -----------------------------
+    // Using DO-WHILE loop
+    // -----------------------------
+
+    result += "<br><b>Using DO-WHILE Loop:</b><br>";
+
+    i = 1;
+
+    do {
+
+        result += n + " x " + i + " = " + (n * i) + "<br>";
+
+        i++;
+
+    } while(i <= 10);
+
+
+    // Display result
+    document.getElementById("output").innerHTML = result;
+}
+
+</script>
+
+</body>
+</html>

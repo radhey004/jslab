@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Area Calculator</title>
+
+    <!-- Simple CSS -->
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f2f2f2;
+        }
+
+        .box {
+            background: white;
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Area Calculator</h2>
+
+<!-- Triangle -->
+<div class="box">
+
+    <h3>Triangle</h3>
+
+    <!-- Enter three sides -->
+    <input id="a" type="number" placeholder="Side 1">
+    <input id="b" type="number" placeholder="Side 2">
+    <input id="c" type="number" placeholder="Side 3">
+
+    <br>
+
+    <button onclick="triangle()">Calculate</button>
+
+    <p id="t"></p>
+
+</div>
+
+
+<!-- Rectangle -->
+<div class="box">
+
+    <h3>Rectangle</h3>
+
+    <!-- Enter length and width -->
+    <input id="l" type="number" placeholder="Length">
+    <input id="w" type="number" placeholder="Width">
+
+    <br>
+
+    <button onclick="rectangle()">Calculate</button>
+
+    <p id="r"></p>
+
+</div>
+
+
+<!-- Circle -->
+<div class="box">
+
+    <h3>Circle</h3>
+
+    <!-- Enter radius -->
+    <input id="rad" type="number" placeholder="Radius">
+
+    <br>
+
+    <button onclick="circle()">Calculate</button>
+
+    <p id="ci"></p>
+
+</div>
+
+
+<script>
+
+    // Function to calculate area of triangle
+    function triangle() {
+
+        // Get values from input boxes
+        let a = parseFloat(document.getElementById("a").value);
+        let b = parseFloat(document.getElementById("b").value);
+        let c = parseFloat(document.getElementById("c").value);
+
+        // Check whether input is valid
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+
+            document.getElementById("t").innerHTML =
+                "Please enter all three sides";
+
+            return;
+        }
+
+        // Calculate semiperimeter
+        let s = (a + b + c) / 2;
+
+        // Check whether valid triangle
+        if (a + b <= c || a + c <= b || b + c <= a) {
+
+            document.getElementById("t").innerHTML =
+                "Please enter valid triangle sides";
+
+            return;
+        }
+
+        // Heron's formula
+        let area = Math.sqrt(
+            s * (s - a) * (s - b) * (s - c)
+        );
+
+        // Display result
+        document.getElementById("t").innerHTML =
+            "Triangle Area = " + area.toFixed(2);
+    }
+
+
+    // Function to calculate area of rectangle
+    function rectangle() {
+
+        // Get length and width
+        let l = parseFloat(document.getElementById("l").value);
+        let w = parseFloat(document.getElementById("w").value);
+
+        // Check input
+        if (isNaN(l) || isNaN(w)) {
+
+            document.getElementById("r").innerHTML =
+                "Please enter length and width";
+
+            return;
+        }
+
+        // Check positive values
+        if (l <= 0 || w <= 0) {
+
+            document.getElementById("r").innerHTML =
+                "Length and width must be positive";
+
+            return;
+        }
+
+        // Calculate area
+        let area = l * w;
+
+        // Display result
+        document.getElementById("r").innerHTML =
+            "Rectangle Area = " + area;
+    }
+
+
+    // Function to calculate area of circle
+    function circle() {
+
+        // Get radius
+        let r = parseFloat(document.getElementById("rad").value);
+
+        // Check input
+        if (isNaN(r)) {
+
+            document.getElementById("ci").innerHTML =
+                "Please enter radius";
+
+            return;
+        }
+
+        // Check positive radius
+        if (r <= 0) {
+
+            document.getElementById("ci").innerHTML =
+                "Radius must be positive";
+
+            return;
+        }
+
+        // Calculate area
+        let area = Math.PI * r * r;
+
+        // Display result
+        document.getElementById("ci").innerHTML =
+            "Circle Area = " + area.toFixed(2);
+    }
+
+</script>
+
+</body>
+</html>
